@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Employee Dashboard</a>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/employee" id="employee" style="color:white">Back</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="logout" style="color:white">Logout</a>
+        </li>
+    </ul>
+</nav>
+<div class="container mt-5">
+    <form>
+        <div class="search-form card">
+            <div class="card-body">
+                <h2 class="card-title">Search Employee</h2>
+                <div class="form-row">
+                    <div class="container table-responsive py-5">
+                        <table class="table table-bordered table-hover" id="employees-table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">name</th>
+                                <th scope="col">salary</th>
+                                <th scope="col">Department</th>
+                            </tr>
+                            </thead>
+                            <tbody class="thead-dark">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="js/jquery-3.6.3.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/employee.js"></script>
+</body>
+</html>

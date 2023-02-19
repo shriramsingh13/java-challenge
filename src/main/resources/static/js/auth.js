@@ -1,26 +1,30 @@
 $(document).ready(function() {
+
 	// Login
 	$("#login-btn").click(function() {
 		var username = $("#username").val();
 		var password = $("#password").val();
-		$.ajax({
-			url: "/login",
-			type: "POST",
-			data: {
+		var userLoginModel = {
 				username: username,
 				password: password
-			},
+			}
+            $("#login-failure").hide();
+		$.ajax({
+			url: "/api/v1/login",
+			type: "POST",
+			 data: JSON.stringify(userLoginModel),
+             contentType: "application/json",
 			success: function(result) {
-				localStorage.setItem("token", result.token);
-				window.location.href = "/employee.html";
+			if(result){
+			localStorage.setItem("token",username+"_"+password);
+			//localStorage.token = username+"_"+password;
+			window.location.replace("/employee");
+			} else {
+			$("#login-failure").html("login failed").show();
+			}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				Swal.fire({
-					title: "Error",
-					text: "Invalid username or password",
-					icon: "error",
-					confirmButtonText: "OK"
-				});
+              $("#login-failure").html("login failed").show();
 			}
 		});
 	});
@@ -29,28 +33,26 @@ $(document).ready(function() {
 	$("#signup-btn").click(function() {
 		var username = $("#new-username").val();
 		var password = $("#new-password").val();
+		 $("#signup-success").hide();
+		 $("#signup-failure").hide();
+		var userLoginModel = {
+        				username: username,
+        				password: password
+        			}
 		$.ajax({
-			url: "/signup",
+			url: "/api/v1/signup",
 			type: "POST",
-			data: {
-				username: username,
-				password: password
-			},
+			data: JSON.stringify(userLoginModel),
+            contentType: "application/json",
 			success: function(result) {
-				Swal.fire({
-					title: "Success",
-					text: "User created successfully",
-					icon: "success",
-					confirmButtonText: "OK"
-				});
+				if(result){
+                			$("#signup-failure").html("SignUp successful").show();
+                			} else {
+                			$("#signup-failure").html("SignUp failed").show();
+                			}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
-				Swal.fire({
-					title: "Error",
-					text: "Unable to create user",
-					icon: "error",
-					confirmButtonText: "OK"
-				});
+				$("#signup-failure").html("SignUp failed").show();
 			}
 		});
 	});
