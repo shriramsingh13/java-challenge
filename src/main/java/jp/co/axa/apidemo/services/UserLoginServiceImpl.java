@@ -2,6 +2,8 @@ package jp.co.axa.apidemo.services;
 
 import jp.co.axa.apidemo.entities.UserLogin;
 import jp.co.axa.apidemo.repositories.UserLoginRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,6 +17,8 @@ import java.util.Optional;
 public class UserLoginServiceImpl implements UserLoginService {
 
     private final UserLoginRepository userLoginRepository;
+
+    Logger logger = LoggerFactory.getLogger(UserLoginServiceImpl.class);
 
     public UserLoginServiceImpl(UserLoginRepository userLoginRepository) {
         this.userLoginRepository = userLoginRepository;
@@ -50,7 +54,7 @@ public class UserLoginServiceImpl implements UserLoginService {
             userLoginRepository.save(userLogin);
             return true;
         } catch(Exception e) {
-            //ToDO log error message
+            logger.warn(e.getMessage());
             return false;
         }
     }

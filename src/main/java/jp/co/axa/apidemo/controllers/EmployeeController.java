@@ -3,6 +3,8 @@ package jp.co.axa.apidemo.controllers;
 import jp.co.axa.apidemo.entities.Employee;
 import jp.co.axa.apidemo.services.EmployeeService;
 import jp.co.axa.apidemo.services.ValidateTokenService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +27,7 @@ public class EmployeeController {
     @Autowired
     private ValidateTokenService validateTokenService;
 
-
+    Logger logger = LoggerFactory.getLogger(EmployeeController.class);
     /**
      * Retrieve all employee data
      *
@@ -37,6 +39,7 @@ public class EmployeeController {
             return employeeService.retrieveEmployees();
         } catch (Exception e) {
             //ToDo log error message
+            logger.warn(e.getMessage());
             return Collections.emptyList();
         }
     }
@@ -53,6 +56,7 @@ public class EmployeeController {
             return employeeService.getEmployee(employeeId);
         } catch (Exception e) {
             //ToDo log error message
+            logger.warn(e.getMessage());
             return null;
         }
     }
@@ -69,6 +73,7 @@ public class EmployeeController {
             return employeeService.searchEmployees(employee.getId(), employee.getName());
         } catch (Exception e) {
             //ToDo log error message
+            logger.warn(e.getMessage());
             return Collections.emptyList();
         }
     }
@@ -124,6 +129,7 @@ public class EmployeeController {
             }
         } catch (Exception e) {
             //ToDo log error message
+            logger.warn(e.getMessage());
             return false;
         }
     }

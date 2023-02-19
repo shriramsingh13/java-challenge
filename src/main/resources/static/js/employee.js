@@ -129,7 +129,7 @@ $(document).ready(function () {
         var str = $("#search-by-id-or-name").val();
         $("#search-emp-data-success").hide();
         $("#search-emp-data-failure").hide();
-        $("#employees-table > tbody > tr").remove();
+        $("#search-table > tbody > tr").remove();
         var id = null;
         var name = null;
         if (!isNaN(parseFloat(str)) && !isNaN(str- 0)) {

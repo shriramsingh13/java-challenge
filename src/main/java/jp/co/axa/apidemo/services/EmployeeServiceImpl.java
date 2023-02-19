@@ -3,6 +3,8 @@ package jp.co.axa.apidemo.services;
 import jp.co.axa.apidemo.configuration.SpringConfigProperties;
 import jp.co.axa.apidemo.entities.Employee;
 import jp.co.axa.apidemo.repositories.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import org.springframework.util.StringUtils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +26,8 @@ import java.util.Optional;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+
+    Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     @Autowired
     private SpringConfigProperties springConfigProperties;
@@ -72,8 +77,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             employeeRepository.save(employee);
             return true;
-        } catch (Exception E) {
-            // ToDo log error message
+        } catch (Exception e) {
+            logger.warn(e.getMessage());
             return false;
         }
 
@@ -89,8 +94,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             employeeRepository.deleteById(employeeId);
             return true;
-        } catch (Exception E) {
-            // ToDo log error message
+        } catch (Exception e) {
+            logger.warn(e.getMessage());
             return false;
         }
     }
@@ -108,16 +113,47 @@ public class EmployeeServiceImpl implements EmployeeService {
             String h2DBPassword = !StringUtils.isEmpty(springConfigProperties.getPassword()) ?
                     springConfigProperties.getPassword() : "" ;
             Connection connection = DriverManager.getConnection(h2DBUrl, h2DBUser, h2DBPassword);
-            PreparedStatement statement = connection.prepareStatement("UPDATE EMPLOYEE SET EMPLOYEE_NAME=?, EMPLOYEE_SALARY=?, DEPARTMENT=? WHERE ID=?");
-            statement.setString(1, employee.getName());
-            statement.setInt(2, employee.getSalary());
-            statement.setString(3, employee.getDepartment());
-            statement.setLong(4, employee.getId());
+            PreparedStatement statement = connection.prepareStatement(buildUpdateQuery(employee));
+//            int paramCount = 1;
+//            statement.setString(1, employee.getName());
+//            statement.setInt(2, employee.getSalary());
+//            statement.setString(3, employee.getDepartment());
+//            statement.setLong(4, employee.getId());
+            int parameterIndex = 1;
+            if (!StringUtils.isEmpty(employee.getName())) {
+                statement.setString(parameterIndex++, employee.getName());
+            }
+            if (employee.getSalary() != null) {
+                statement.setDouble(parameterIndex++, employee.getSalary());
+            }
+            if (!StringUtils.isEmpty(employee.getDepartment())) {
+                statement.setString(parameterIndex++, employee.getDepartment());
+            }
+
+            statement.setLong(parameterIndex, employee.getId());
             statement.executeUpdate();
             return true;
         } catch (Exception e) {
-            // ToDo log error message
+            logger.warn(e.getMessage());
             return  false;
         }
     }
+
+    public String buildUpdateQuery(Employee employee) {
+        StringBuilder query = new StringBuilder("UPDATE EMPLOYEE SET ");
+        List<String> fields = new ArrayList<>();
+        if (!StringUtils.isEmpty(employee.getName())) {
+            fields.add("EMPLOYEE_NAME=?");
+        }
+        if (employee.getSalary() != null) {
+            fields.add("EMPLOYEE_SALARY=?");
+        }
+        if (!StringUtils.isEmpty(employee.getDepartment())) {
+            fields.add("DEPARTMENT=?");
+        }
+        query.append(String.join(", ", fields));
+        query.append(" WHERE ID=?");
+        return query.toString();
+    }
+
 }

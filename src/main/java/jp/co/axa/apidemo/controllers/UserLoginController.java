@@ -1,5 +1,7 @@
 package jp.co.axa.apidemo.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,7 @@ public class UserLoginController {
     @Autowired
     private UserLoginService userLoginService;
 
+    Logger logger = LoggerFactory.getLogger(UserLoginController.class);
     /**
      * Check if username and password are valid for login
      *
@@ -37,6 +40,7 @@ public class UserLoginController {
                 return false;
             }
         } catch (Exception e) {
+            logger.warn(e.getMessage());
             return false;
         }
     }

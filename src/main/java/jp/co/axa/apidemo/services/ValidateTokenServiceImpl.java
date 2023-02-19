@@ -2,6 +2,8 @@ package jp.co.axa.apidemo.services;
 
 import jp.co.axa.apidemo.entities.UserLogin;
 import jp.co.axa.apidemo.repositories.UserLoginRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,6 +22,8 @@ public class ValidateTokenServiceImpl implements ValidateTokenService{
 
     private static final String TOKEN_PATTERN_SEPARATOR =  "_";
 
+    Logger logger = LoggerFactory.getLogger(ValidateTokenServiceImpl.class);
+
     public ValidateTokenServiceImpl(UserLoginRepository userLoginRepository) {
         this.userLoginRepository = userLoginRepository;
     }
@@ -32,13 +36,17 @@ public class ValidateTokenServiceImpl implements ValidateTokenService{
      */
     @Override
     public boolean validateToken(String token) {
-        String[] splitTokenArr = token.split(TOKEN_PATTERN_SEPARATOR);
-        if(!token.equals(TOKEN) && splitTokenArr.length < 2){
-           return false;
-        }
-        Optional<UserLogin> optLogin = userLoginRepository.findByUsernameAndPassword(splitTokenArr[0], splitTokenArr[1]);
-        if(optLogin.isPresent()){
-            return true;
+        try {
+            String[] splitTokenArr = token.split(TOKEN_PATTERN_SEPARATOR);
+            if (!token.equals(TOKEN) && splitTokenArr.length < 2) {
+                return false;
+            }
+            Optional<UserLogin> optLogin = userLoginRepository.findByUsernameAndPassword(splitTokenArr[0], splitTokenArr[1]);
+            if (optLogin.isPresent()) {
+                return true;
+            }
+        } catch (Exception e) {
+            logger.warn(e.getMessage());
         }
         return false;
     }
