@@ -16,7 +16,7 @@ $(document).ready(function () {
                 for (var i = 0; i < employees.length; i++) {
                     var employee = employees[i];
                     var row = $("<tr>");
-                    row.append($("<th scope='row'>").text(i + 1));
+                    row.append($("<th scope='row'>").text(employee.id));
                     row.append($("<td>").text(employee.name));
                     row.append($("<td>").text(employee.salary));
                     row.append($("<td>").text(employee.department));
@@ -148,7 +148,7 @@ $(document).ready(function () {
             contentType: "application/json",
             success: function (result) {
                 var employees = result;
-                var tableBody = $("#employees-table > tbody");
+                var tableBody = $("#search-table > tbody");
                 for (var i = 0; i < employees.length; i++) {
                     var employee = employees[i];
                     var row = $("<tr>");
