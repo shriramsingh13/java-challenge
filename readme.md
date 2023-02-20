@@ -24,7 +24,7 @@
 - Added exception handling
 
 **[Important Note]**
-I have changed the H2 database configuration to store database in physical location instead of in-memory so in case you want to use the in-memory then please uncomment the below configration in application.properties file : https://github.com/shriramsingh13/java-challenge/blob/main/src/main/resources/application.properties
+I have changed the H2 database configuration to store database in physical location instead of in-memory so in case, you want to use the in-memory then please uncomment the below configration in application.properties file : https://github.com/shriramsingh13/java-challenge/blob/main/src/main/resources/application.properties
 
 **Un-comment below**
 ```text
@@ -50,7 +50,7 @@ spring.datasource.url=jdbc:h2:file:./data/H2FileDB;DB_CLOSE_ON_EXIT=FALSE;AUTO_R
 -For directly log-in on login page :http://localhost:8080/employee 
 -Please **username : admin** and **password : admin**
 
-#### I recommend to please use UI for get the better experience of this application so login and singup go to page: http://localhost:8080/login  
+#### I recommend to please use UI for getting better experience of this application so for login or singup please go to page: http://localhost:8080/login  
 
 ### Documentation
 
@@ -70,10 +70,10 @@ spring.datasource.url=jdbc:h2:file:./data/H2FileDB;DB_CLOSE_ON_EXIT=FALSE;AUTO_R
 - BackEnd: Java, SpringBoot, H2 database, Thymeleaf
 
 #### what you would have done if you had more time?
-- I had some more time then I would had made the create the UI in React Or Angular with Typescipt and add pagination for view all employee data
-- I could had probably added more unit test cases, maybe used guuid to create authorization token instead of create access token by combining username and password
-- I would had added logging format to store log in proper format by setting log configuration
-- Add more detailed documents for the APIs
+- If i had some more time then I would had created the UI in React Or Angular with Typescipt and add pagination to view large employee data
+- I could had probably added more unit test cases, maybe used GuUID to create authorization token instead of create access token by combining username and password
+- I could had added logging format to store log in proper format by setting log configuration
+- I could Add more detailed documents for the APIs
 - I could had added more data validation on UI side
 - I could checked some more for the corner caused and would had fixed them
 
@@ -85,7 +85,7 @@ spring.datasource.url=jdbc:h2:file:./data/H2FileDB;DB_CLOSE_ON_EXIT=FALSE;AUTO_R
 
 Thank you
 
-## ============================================================ ##
+## =================================================== ##
 
 ### How to use this spring-boot project
 
