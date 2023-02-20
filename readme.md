@@ -25,6 +25,7 @@
 
 **[Important Note]**
 I have changed the H2 database configuration to store database in physical location instead of in-memory so in case you want to use the in-memory then please uncomment the below configration in application.properties file : https://github.com/shriramsingh13/java-challenge/blob/main/src/main/resources/application.properties
+
 **Un-comment below**
 ```text
 ##Persisting data in memory below
