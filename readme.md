@@ -14,7 +14,7 @@
   - To access Create/Update/Delete API request must contain authorization token
     - **Important!** : If you SignUp and Login to Employee DashBoard UI then you an access token will automatically managed
      but in case you going to call with browser then you will get no response and if you going to use PostMan or tool 
-     then please use below access token
+     then please use below master access token
      ```java
      headers: {"authorization": "admin_admin"  }
      ```
@@ -38,13 +38,21 @@ spring.datasource.url=jdbc:h2:file:./data/H2FileDB;DB_CLOSE_ON_EXIT=FALSE;AUTO_R
 ```
 
 ### FrontEnd side 
+
 #### The Idea behind adding UI is to provide user an interface which will allow them to easily access the Backed API for viewing/creatin/updating/deleting and searching employee data and also to show that i can work on UI part as well
 - Add login and SignUp Page
   - User can signup and login to view, create and modify the employee data
 - Add Employee dashboard page for creatin/updating/deleting and searching employee data
 - Add ViewAll page to view all of the employee data at once
 
+**[Important Note]**
+-For directly log-in on login page :http://localhost:8080/employee 
+-Please **username : admin** and **password : admin**
+
+#### I recommend to please use UI for get the better experience of this application so login and singup go to page: http://localhost:8080/login  
+
 ### Documentation
+
 #### Please find below API design documentation here : https://github.com/shriramsingh13/java-challenge/tree/main/designDocument
 - **Login page API** -> https://github.com/shriramsingh13/java-challenge/blob/main/designDocument/loginPage.md
 - **SignUp page API** -> https://github.com/shriramsingh13/java-challenge/blob/main/designDocument/signupPage.md
@@ -52,6 +60,7 @@ spring.datasource.url=jdbc:h2:file:./data/H2FileDB;DB_CLOSE_ON_EXIT=FALSE;AUTO_R
 - **API Transition diagram** -> https://github.com/shriramsingh13/java-challenge/blob/main/designDocument/TransitionDaigram.png
 
 ### Other details
+
 #### Below are the tools and libraries i used for the development
 - IDE : IntelliJ IDEA 2019.1.4 (Community Edition)
 - Design : PlantUML plugin for Transition diagram
@@ -64,6 +73,8 @@ spring.datasource.url=jdbc:h2:file:./data/H2FileDB;DB_CLOSE_ON_EXIT=FALSE;AUTO_R
 - I could had probably added more unit test cases, maybe used guuid to create authorization token instead of create access token by combining username and password
 - I would had added logging format to store log in proper format by setting log configuration
 - Add more detailed documents for the APIs
+- I could had added more data validation on UI side
+
 #### Your experience in Java
 - I have 8.5+ years of experience in Java & UI Development and have around 3.5+ years of development exprience with Spring Boot, At my workplace I am currenlty working with Java and Spring boot band Rect on the Frontend side
 
