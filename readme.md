@@ -4,22 +4,22 @@
   - To allow user to signup and login on the Employee dashboard
 - Update Create/Update/Delete API
 - Added Search API
-  - To allow user to search employee as per id or name
+  - To allow user to search employee by id or name
 - Added logging 
-- Added Junit test cases for test the api controllers and services using mockito
-- Added comments as per checkstyle rules
+- Added Junit test cases to test the api controllers and services using mockito
+- Added comments as per checkstyle standards
 - Added Spring security configuartion
 - Enabled Caching for Get API
 - Added API access validation check via authorization token
-  - To access Create/Update/Delete API request must contain authorization token
-    - **Important!** : If you SignUp and Login to Employee DashBoard UI then you an access token will automatically managed
-     but in case you going to call with browser then you will get no response and if you going to use PostMan or tool 
-     then please use below master access token
+  - To access Create/Update/Delete API, the request must contain authorization token
+    - **Important!** : If you SignUp and Login to Employee DashBoard UI then your access token will be automatically managed
+     but in case, you going to use PostMan or tool then please use below master access token
+
      ```java
      headers: {"authorization": "admin_admin"  }
      ```
-     - **For details please check the this API design page** :
-     https://github.com/shriramsingh13/java-challenge/blob/main/designDocument/employeePage.md
+     - **For more details please check this API design page** : https://github.com/shriramsingh13/java-challenge/blob/main/designDocument/employeePage.md
+     
 - Added Spring Thymeleaf to manage Employee DashBoard UI page
 - Added exception handling
 
@@ -31,6 +31,7 @@ I have changed the H2 database configuration to store database in physical locat
 ##Persisting data in memory below
 ##spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
 ```
+
 **Comment out below**
 ```text
 ##Persisting data in file below
