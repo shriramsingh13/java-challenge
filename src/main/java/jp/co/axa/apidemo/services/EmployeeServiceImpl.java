@@ -114,11 +114,6 @@ public class EmployeeServiceImpl implements EmployeeService {
                     springConfigProperties.getPassword() : "" ;
             Connection connection = DriverManager.getConnection(h2DBUrl, h2DBUser, h2DBPassword);
             PreparedStatement statement = connection.prepareStatement(buildUpdateQuery(employee));
-//            int paramCount = 1;
-//            statement.setString(1, employee.getName());
-//            statement.setInt(2, employee.getSalary());
-//            statement.setString(3, employee.getDepartment());
-//            statement.setLong(4, employee.getId());
             int parameterIndex = 1;
             if (!StringUtils.isEmpty(employee.getName())) {
                 statement.setString(parameterIndex++, employee.getName());
