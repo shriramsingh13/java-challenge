@@ -75,6 +75,7 @@ spring.datasource.url=jdbc:h2:file:./data/H2FileDB;DB_CLOSE_ON_EXIT=FALSE;AUTO_R
 - I would had added logging format to store log in proper format by setting log configuration
 - Add more detailed documents for the APIs
 - I could had added more data validation on UI side
+- I could checked some more for the corner caused and would had fixed them
 
 #### Your experience in Java
 - I have 8.5+ years of experience in Java & UI Development and have around 3.5+ years of development exprience with Spring Boot, At my workplace I am currenlty working with Java and Spring boot band Rect on the Frontend side
