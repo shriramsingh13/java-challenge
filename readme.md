@@ -78,7 +78,7 @@ spring.datasource.url=jdbc:h2:file:./data/H2FileDB;DB_CLOSE_ON_EXIT=FALSE;AUTO_R
 - I could checked some more for the corner caused and would had fixed them
 
 #### Your experience in Java
-- I have 8.5+ years of experience in Java & UI Development and have around 3.5+ years of development exprience with Spring Boot, At my workplace I am currenlty working with Java and Spring boot band Rect on the Frontend side
+- I have 8.5+ years of experience in Java & UI Development and have around 3.5+ years of development exprience with Spring Boot, At my workplace I am currenlty working with Java and Spring boot band React with TypeScript on the Frontend side
 
 #### Issues i faced for setup
 - I found that lombok Plugin work with older IntelliJ IDEA version such as 2019.1.4 and initially i had some difficult in setup it to work on my local system but after adding lombok plugin and then setting Build,Execution,Deployement -> Compiler -> Annotation Processors settings, i think worked out fine and its working fine in the project so if you have any issue similar to like this for lombok then try same fix proccess.
