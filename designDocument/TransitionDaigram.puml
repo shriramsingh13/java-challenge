@@ -1,0 +1,46 @@
+@startuml
+
+group <font color=red> Employee Create/Update/Delete API
+
+User -> EmployeeDashBoardUI: Request
+
+EmployeeDashBoardUI -> EmployeeServer: Request
+EmployeeServer -> H2DataBase : modify database
+H2DataBase -> EmployeeServer
+
+alt successful case
+
+    EmployeeServer -> EmployeeDashBoardUI: Response(true)
+    EmployeeDashBoardUI -> User : Response
+
+else some kind of failure
+
+    EmployeeServer -> EmployeeDashBoardUI: Response(false)
+    EmployeeDashBoardUI -> User : Response
+
+end
+
+end
+
+group <font color=red> Employee Get/Search API
+
+User -> EmployeeDashBoardUI: Request
+
+EmployeeDashBoardUI -> EmployeeServer: Request
+EmployeeServer -> H2DataBase : select from database
+H2DataBase -> EmployeeServer
+
+alt successful case
+
+    EmployeeServer -> EmployeeDashBoardUI: Response(Employee object or Employee List)
+    EmployeeDashBoardUI -> User : Response
+
+else some kind of failure
+
+    EmployeeServer -> EmployeeDashBoardUI: Response(Empty object)
+    EmployeeDashBoardUI -> User : Response
+
+end
+
+end
+@enduml
